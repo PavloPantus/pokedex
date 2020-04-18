@@ -1,1 +1,1 @@
-# new project exmple
+# new project example
