@@ -6,15 +6,10 @@ import PaginationControlled from "./components/Pagination/Pagination";
 import TextField from "@material-ui/core/TextField";
 import FilterByTags from "./components/FilterByTags/FilterByTags";
 import {observer} from 'mobx-react-lite';
-import {TagsStoreContext} from "./store/tagsStore";
 
 const App = observer(() => {
 
-  const TagsStore = useContext(TagsStoreContext);
 
-  useEffect(()=>{
-    TagsStore.loadTagsFromServer('https://pokeapi.co/api/v2/type/')
-  },[])
 
   return (
     (
@@ -35,7 +30,7 @@ const App = observer(() => {
             />
           </div>
           <div className={classes['app__filter-type']}>
-            <FilterByTags tags={TagsStore.tags} />
+            <FilterByTags />
           </div>
         </div>
 

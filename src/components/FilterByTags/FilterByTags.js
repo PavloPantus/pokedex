@@ -1,24 +1,24 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import {observer} from 'mobx-react-lite';
+import {TagsStoreContext} from "../../store/tagsStore";
+import classes from './FilterByTags.module.scss';
 
-const FilterBytags =({tags}) => {
+
+const FilterBytags = observer(() => {
 
 
-  const [tagsState, setTagsState] = useState((() => {
-    const tagsState = {};
+  const TagsStore = useContext(TagsStoreContext);
+  const tags = TagsStore.tags;
+  const tagsState = TagsStore.tagsState;
+  const setTagsState = TagsStore.setTagsState.bind(TagsStore);
 
-    if(!tags){
-      return {}
-    }
+  useEffect(()=>{
+    TagsStore.loadTagsFromServer('https://pokeapi.co/api/v2/type/')
+  },[])
 
-    tags.forEach((tag) => {
-      tagsState[tag.name] = false;
-    });
-
-    return tagsState;
-  })());
 
   const handleChange = (event) => {
     setTagsState({
@@ -27,21 +27,24 @@ const FilterBytags =({tags}) => {
   };
 
   return (
-    <FormGroup row>
-      {
-        JSON.stringify(tagsState)
-      }
-      {
-        tags.map(tag => (
-          <FormControlLabel
-            control={<Checkbox style={{ color: tag.color }} checked={tagsState[tag.name]} onChange={handleChange} name={tag.name} />}
-            label={tag.name}
-          />
-        ))
-      }
+    <div className={classes['fitler-container']}>
+      <span className={classes['filter__heading']}>
+        filter by tag
+      </span>
+      <FormGroup row>
+        {
+          tags.map(tag => (
+            <FormControlLabel
+              key={tag.name}
+              control={<Checkbox style={{ color: tag.color }} checked={tagsState[tag.name] || false} onChange={handleChange} name={tag.name} />}
+              label={tag.name}
+            />
+          ))
+        }
 
-    </FormGroup>
+      </FormGroup>
+    </div>
   );
-}
+})
 
 export default FilterBytags

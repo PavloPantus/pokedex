@@ -10,6 +10,7 @@ export const PokemonCard = () => (
     />
 
     <table className={classes['pokemon__description-section']}>
+      <thead>
       <tr>
         <th className={classes.pokemon__property}>
           name:
@@ -18,9 +19,11 @@ export const PokemonCard = () => (
           metapod
         </td>
       </tr>
+      </thead>
     </table>
 
     <table className={classes['pokemon__description-section']}>
+      <thead>
       <tr>
         <th className={classes.pokemon__property}>
           type:
@@ -30,6 +33,7 @@ export const PokemonCard = () => (
           normal
         </td>
       </tr>
+      </thead>
     </table>
 
     <div className={classes['pokemon__property-heading']}>
@@ -38,126 +42,27 @@ export const PokemonCard = () => (
 
     <table className={`${classes.pokemon__stats} ${classes['pokemon-stats']}`}>
 
+      <thead>
       <tr>
         <th> special defence </th>
         <td>
           <div className={classes['pokemon-stats__sub-props']}>
             <span className={classes['pokemon-stats__key']}>
-base_stat:
+              base_stat:
               {' '}
             </span>
             <span className={classes['pokemon-stats__value']}>30</span>
           </div>
           <div className={classes['pokemon-stats__sub-props']}>
             <span className={classes['pokemon-stats__key']}>
-effort:
+              effort:
               {' '}
             </span>
             <span className={classes['pokemon-stats__value']}>0</span>
           </div>
         </td>
       </tr>
-
-      <tr>
-        <th> special defence </th>
-        <td>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-base_stat:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>30</span>
-          </div>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-effort:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>0</span>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <th> special defence </th>
-        <td>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-base_stat:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>30</span>
-          </div>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-effort:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>0</span>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <th> special defence </th>
-        <td>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-base_stat:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>30</span>
-          </div>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-effort:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>0</span>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <th> special defence </th>
-        <td>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-base_stat:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>30</span>
-          </div>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-effort:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>0</span>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <th> special defence </th>
-        <td>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-base_stat:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>30</span>
-          </div>
-          <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
-effort:
-              {' '}
-            </span>
-            <span className={classes['pokemon-stats__value']}>0</span>
-          </div>
-        </td>
-      </tr>
-
+      </thead>
     </table>
 
   </div>
