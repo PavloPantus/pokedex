@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, {useContext, useEffect} from 'react';
 import './Pagination.scss';
 import { observer } from 'mobx-react-lite';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
@@ -10,6 +10,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Pagination from '@material-ui/lab/Pagination';
 import { PaginationStoreContext } from '../../store/paginationStore';
 import { PokemonsStoreContext } from '../../store/pokemonsStore';
+import {useHistory, useLocation} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,13 +30,29 @@ const RadioGroupHorizontal = withStyles({
 })(props => <RadioGroup {...props} />);
 
 export default observer(() => {
+
+  let searchParams = new URLSearchParams(useLocation().search);
+
+  let history = useHistory();
+
   const classes = useStyles();
 
   const paginationStore = useContext(PaginationStoreContext);
   const pokemonStore = useContext(PokemonsStoreContext);
 
+  useEffect(()=>{
+    paginationStore.setCurrentPage(searchParams.get('page'));
+    paginationStore.setItemsPerPage(searchParams.get('itemsPerPage'))
+  },[])
+
   const handleChangItemsPerPage = (event) => {
-    paginationStore.setItemsPerPage(event.target.value);
+    let value = event.target.value;
+    searchParams.set('itemsPerPage', value);
+    history.push({
+      search: searchParams.toString(),
+    });
+
+    paginationStore.setItemsPerPage(value);
     pokemonStore.loadPokemonsFromServer(
       ` https://pokeapi.co/api/v2/pokemon/?limit=
         ${paginationStore.itemsPerPage}&offset=
@@ -45,6 +62,11 @@ export default observer(() => {
   };
 
   const handleChangePagination = (event, clickedPage) => {
+
+    searchParams.set('page', clickedPage);
+    history.push({
+      search: searchParams.toString(),
+    })
     paginationStore.setCurrentPage(clickedPage);
     pokemonStore.loadPokemonsFromServer(
       ` https://pokeapi.co/api/v2/pokemon/?limit=

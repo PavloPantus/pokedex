@@ -8,6 +8,7 @@ import PaginationControlled from './components/Pagination/Pagination';
 import FilterByTags from './components/FilterByTags/FilterByTags';
 import { ModalContentStoreContext } from './store/modalContentStore';
 import { PokemonsStoreContext } from './store/pokemonsStore';
+import {BrowserRouter} from "react-router-dom";
 
 const App = observer(() => {
   const modalContentStore = useContext(ModalContentStoreContext);
@@ -15,7 +16,7 @@ const App = observer(() => {
 
   return (
     (
-
+      <BrowserRouter>
       <div className={classes.app}>
         <h1 className={classes.app__heading}>Pokedex app</h1>
 
@@ -86,6 +87,7 @@ const App = observer(() => {
         </div>
 
       </div>
+      </BrowserRouter>
 
     )
   );

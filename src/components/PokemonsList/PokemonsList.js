@@ -6,13 +6,22 @@ import { PokemonCard } from '../PokemonCard/PokemonCard';
 import { PokemonsStoreContext } from '../../store/pokemonsStore';
 import { ModalContentStoreContext } from '../../store/modalContentStore';
 import Loader from '../Loader/Loader';
+import {useLocation} from "react-router-dom";
 
 export const PokemonsList = observer(() => {
+
+
+  let searchParams = new URLSearchParams(useLocation().search);
+
   const pokemonStore = useContext(PokemonsStoreContext);
   const modalContentStore = useContext(ModalContentStoreContext);
 
   useEffect(() => {
-    pokemonStore.loadPokemonsFromServer('https://pokeapi.co/api/v2/pokemon/?limit=10&offset=10');
+    pokemonStore.loadPokemonsFromServer(
+      `https://pokeapi.co/api/v2/pokemon/?limit=${
+        searchParams.get('itemsPerPage')
+      }&offset=${
+      searchParams.get('page') * searchParams.get('itemsPerPage')}`);
   }, []);
 
   if (pokemonStore.loading) {
