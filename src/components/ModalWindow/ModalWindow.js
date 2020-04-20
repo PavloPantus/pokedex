@@ -1,12 +1,12 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import {observer} from 'mobx-react-lite';
-import {ModalContentStoreContext} from "../../store/modalContentStore";
+import { observer } from 'mobx-react-lite';
+import { ModalContentStoreContext } from '../../store/modalContentStore';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
@@ -20,16 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TransitionsModal = observer(({children}) => {
-
+const TransitionsModal = observer(({ children }) => {
   const modalContentStore = useContext(ModalContentStoreContext);
-
 
   const classes = useStyles();
 
-
   const handleOpen = () => {
-    //modalContentStore.setContent(true);
+    // modalContentStore.setContent(true);
   };
 
   const handleClose = () => {
@@ -59,6 +56,6 @@ const TransitionsModal = observer(({children}) => {
       </Modal>
     </div>
   );
-})
+});
 
-export default TransitionsModal
+export default TransitionsModal;

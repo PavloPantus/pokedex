@@ -1,9 +1,8 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import classes from './PokemonCard.module.scss';
-import {TagsStoreContext} from "../../store/tagsStore";
+import { TagsStoreContext } from '../../store/tagsStore';
 
-export const PokemonCard = ({id, name, types, stats}) => {
-
+export const PokemonCard = ({ id, name, types, stats }) => {
   const TagsStore = useContext(TagsStoreContext);
 
   return (
@@ -16,30 +15,35 @@ export const PokemonCard = ({id, name, types, stats}) => {
 
       <table className={classes['pokemon__description-section']}>
         <thead>
-        <tr>
-          <th className={classes.pokemon__property}>
+          <tr>
+            <th className={classes.pokemon__property}>
             name:
-          </th>
-          <td className={classes.pokemon__name}>
-            {name}
-          </td>
-        </tr>
+            </th>
+            <td className={classes.pokemon__name}>
+              {name}
+            </td>
+          </tr>
         </thead>
       </table>
 
       <table className={classes['pokemon__description-section']}>
         <thead>
-        <tr>
-          <th className={classes.pokemon__property}>
+          <tr>
+            <th className={classes.pokemon__property}>
             type:
-          </th>
+            </th>
 
-          <td className={classes.pokemon__type}>
-            {
-              types.map(type=><span style={{color: TagsStore.tags.find(tag=>tag.name===type.type.name).color}} key={type.type.name}>{type.type.name}{' '}</span>)
-            }
-          </td>
-        </tr>
+            <td className={classes.pokemon__type}>
+              {
+                types.map(type => (
+                  <span style={{ color: TagsStore.tags.find(tag => tag.name === type.type.name).color }} key={type.type.name}>
+                    {type.type.name}
+                    {' '}
+                  </span>
+                ))
+              }
+            </td>
+          </tr>
         </thead>
       </table>
 
@@ -50,30 +54,34 @@ export const PokemonCard = ({id, name, types, stats}) => {
       <table className={`${classes.pokemon__stats} ${classes['pokemon-stats']}`}>
 
         <thead>
-        {stats.map(stat=>(
-          <tr key={stat.stat.name}>
-            <th> {stat.stat.name} </th>
-            <td>
-              <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
+          {stats.map(stat => (
+            <tr key={stat.stat.name}>
+              <th>
+                {' '}
+                {stat.stat.name}
+                {' '}
+              </th>
+              <td>
+                <div className={classes['pokemon-stats__sub-props']}>
+                  <span className={classes['pokemon-stats__key']}>
               base_stat:
-              {' '}
-            </span>
-                <span className={classes['pokemon-stats__value']}>{stat['base_stat']}</span>
-              </div>
-              <div className={classes['pokemon-stats__sub-props']}>
-            <span className={classes['pokemon-stats__key']}>
+                    {' '}
+                  </span>
+                  <span className={classes['pokemon-stats__value']}>{stat.base_stat}</span>
+                </div>
+                <div className={classes['pokemon-stats__sub-props']}>
+                  <span className={classes['pokemon-stats__key']}>
               effort:
-              {' '}
-            </span>
-                <span className={classes['pokemon-stats__value']}>{stat.effort}</span>
-              </div>
-            </td>
-          </tr>
-        ))}
+                    {' '}
+                  </span>
+                  <span className={classes['pokemon-stats__value']}>{stat.effort}</span>
+                </div>
+              </td>
+            </tr>
+          ))}
         </thead>
       </table>
 
     </div>
-  )
+  );
 };

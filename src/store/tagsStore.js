@@ -1,7 +1,7 @@
-import { observable, decorate, action } from "mobx";
-import { createContext } from "react";
+import { observable, decorate, action } from 'mobx';
+import { createContext } from 'react';
 
-let colors = ['#FF6633', '#FFB399', '#FF33FF', '#b9bf6d', '#00B3E6',
+const colors = ['#FF6633', '#FFB399', '#FF33FF', '#b9bf6d', '#00B3E6',
   '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
   '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
   '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
@@ -15,24 +15,27 @@ let colors = ['#FF6633', '#FFB399', '#FF33FF', '#b9bf6d', '#00B3E6',
 const TagsStore = {
   tags: [],
   tagsState: {},
-  setTagsState (newTagsState) {
-    this.tagsState = newTagsState
+  setTagsState(newTagsState) {
+    this.tagsState = newTagsState;
   },
   loadTagsFromServer(link) {
     fetch(link)
-      .then(response=>response.json())
-      .then((data)=>{
-        this.tags = data.results.map((type, i)=>({name: type.name, color: colors[i]}));
+      .then(response => response.json())
+      .then((data) => {
+        this.tags = data.results.map((type, i) => ({
+          name: type.name, color: colors[i],
+        }));
 
         const tagsState = {};
+
         this.tags.forEach((tag) => {
           tagsState[tag.name] = false;
         });
 
-        this.tagsState = tagsState
-      })
-  }
-}
+        this.tagsState = tagsState;
+      });
+  },
+};
 
 decorate(TagsStore, {
   tags: observable,
@@ -40,6 +43,6 @@ decorate(TagsStore, {
   setTagsState: action,
   loadTagsFromServer: action,
 
-})
+});
 
 export const TagsStoreContext = createContext(TagsStore);
