@@ -56,7 +56,7 @@ export default observer(() => {
     pokemonStore.loadPokemonsFromServer(
       ` https://pokeapi.co/api/v2/pokemon/?limit=
         ${paginationStore.itemsPerPage}&offset=
-        ${paginationStore.currentPage-1}`
+        ${paginationStore.currentPage - 1}`
     );
     window.scroll(0, 0);
   };
@@ -67,7 +67,6 @@ export default observer(() => {
       search: searchParams.toString(),
     });
     paginationStore.setCurrentPage(clickedPage);
-    console.log(paginationStore.currentPage,'page', paginationStore.itemsPerPage,'items')
     pokemonStore.loadPokemonsFromServer(
       ` https://pokeapi.co/api/v2/pokemon/?limit=
         ${paginationStore.itemsPerPage}&offset=

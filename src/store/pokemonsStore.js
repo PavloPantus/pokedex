@@ -43,7 +43,8 @@ const PokemonsStore = {
         }
 
         if (this.activeFilterTags.length === 0) {
-          return pokemon.name.toLowerCase().includes(this.filterQueryName.toLowerCase());
+          return pokemon.name.toLowerCase()
+            .includes(this.filterQueryName.toLowerCase());
         }
 
         return pokemon.name.includes(this.filterQueryName)
