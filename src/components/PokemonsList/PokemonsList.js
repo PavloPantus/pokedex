@@ -8,8 +8,8 @@ import { ModalContentStoreContext } from '../../store/modalContentStore';
 import Loader from '../Loader/Loader';
 import {useLocation} from "react-router-dom";
 
-export const PokemonsList = observer(() => {
 
+export const PokemonsList = observer(() => {
 
   let searchParams = new URLSearchParams(useLocation().search);
 
@@ -19,9 +19,9 @@ export const PokemonsList = observer(() => {
   useEffect(() => {
     pokemonStore.loadPokemonsFromServer(
       `https://pokeapi.co/api/v2/pokemon/?limit=${
-        searchParams.get('itemsPerPage')
+        searchParams.get('itemsPerPage') || '10'
       }&offset=${
-      searchParams.get('page') * searchParams.get('itemsPerPage')}`);
+      (searchParams.get('page') - 1) * searchParams.get('itemsPerPage') || '0'}`);
   }, []);
 
   if (pokemonStore.loading) {
@@ -36,11 +36,13 @@ export const PokemonsList = observer(() => {
           const newModalContent = (
             <div className={classes['pokemon-photos']}>
               {Object.values(pokemon.sprites)
-                .map((link, i) => <img
-                  alt={pokemon.name}
-                  key={i}
-                  src={link}
-                />)}
+                .map((link, i) => (
+                  <img
+                    alt={pokemon.name}
+                    key={i}
+                    src={link}
+                 />
+                ))}
             </div>
           );
 

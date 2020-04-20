@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import classes from './PokemonCard.module.scss';
 import { TagsStoreContext } from '../../store/tagsStore';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const PokemonCard = ({ id, name, types, stats }) => {
@@ -11,7 +11,7 @@ export const PokemonCard = ({ id, name, types, stats }) => {
   return (
     <div className={classes.pokemon}>
       <LazyLoadImage
-        placeholderSrc={'http://placehold.it/250x250/ffffff&text=not_loaded'}
+        placeholderSrc="http://placehold.it/250x250/ffffff&text=not_loaded"
         effect="blur"
         className={classes.pokemon__avatar}
         src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
