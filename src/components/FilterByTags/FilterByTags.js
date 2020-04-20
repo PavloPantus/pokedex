@@ -30,10 +30,11 @@ const FilterBytags = observer(() => {
       <span className={classes.filter__heading}>
         filter by tag
       </span>
-      <FormGroup row>
+      <div className={classes['filter__tags-container']}>
         {
           tags.map(tag => (
             <FormControlLabel
+              style={{zIndex: 4, marginTop: '5px'}}
               key={tag.name}
               control={<Checkbox style={{ color: tag.color }} checked={tagsState[tag.name] || false} onChange={handleChange} name={tag.name} />}
               label={tag.name}
@@ -41,7 +42,7 @@ const FilterBytags = observer(() => {
           ))
         }
 
-      </FormGroup>
+      </div>
     </div>
   );
 });

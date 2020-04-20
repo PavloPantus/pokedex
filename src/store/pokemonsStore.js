@@ -39,6 +39,10 @@ const PokemonsStore = {
           return pokemon.types.filter(type=>this.activeFilterTags.find(name => name === type.type.name)).length > 0
         }
 
+        if(this.activeFilterTags.length === 0) {
+         return pokemon.name.includes(this.filterQueryName)
+        }
+
         return pokemon.name.includes(this.filterQueryName) &&
           pokemon.types.filter(type=>this.activeFilterTags.find(name => name === type.type.name)).length > 0
       })

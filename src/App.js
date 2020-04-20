@@ -19,6 +19,38 @@ const App = observer(() => {
       <div className={classes.app}>
         <h1 className={classes.app__heading}>Pokedex app</h1>
 
+
+        <nav className={classes['app__mobile-navigation']} role="navigation">
+          <div id={classes["menuToggle"]}>
+            <input type="checkbox" />
+            <span className={classes['toggle-span']}></span>
+            <span className={classes['toggle-span']}></span>
+            <span className={classes['toggle-span']}></span>
+
+            <ul id={classes["menu"]}>
+              <div className={classes['app__filters_mobile']}>
+                <div className={classes['appp__filter-name']}>
+                  <TextField
+                    id="outlined-multiline-flexible"
+                    label="filter by Name"
+                    multiline
+                    rowsMax={4}
+                    value={pokemonStore.filterQueryName}
+                    onChange={(e) => {
+                      pokemonStore.setFilterQueryName(e.target.value)
+                    }}
+                    variant="outlined"
+                  />
+                </div>
+                <div className={classes['app__filter-type']}>
+                  <FilterByTags />
+                </div>
+              </div>
+            </ul>
+          </div>
+        </nav>
+
+
         <div className={classes.app__filters}>
           <div className={classes['appp__filter-name']}>
             <TextField
