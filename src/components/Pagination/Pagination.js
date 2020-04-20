@@ -107,7 +107,7 @@ export default observer(() => {
       </FormControl>
 
       <Pagination
-        count={Math.floor(
+        count={Math.ceil(
           pokemonStore.countOfPokemonsOnServer / paginationStore.itemsPerPage
         )}
         page={+paginationStore.currentPage}
