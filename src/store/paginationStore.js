@@ -1,16 +1,16 @@
-import { observable, decorate, action, computed } from 'mobx';
+import { observable, decorate, action } from 'mobx';
 import { createContext } from 'react';
 
 const PaginationStore = {
   itemsPerPage: '10',
-  setItemsPerPage (items) {
-    this.itemsPerPage = items
+  setItemsPerPage(items) {
+    this.itemsPerPage = items;
   },
 
   currentPage: '1',
-  setCurrentPage (page) {
-    this.currentPage = page
-  }
+  setCurrentPage(page) {
+    this.currentPage = page;
+  },
 
 };
 

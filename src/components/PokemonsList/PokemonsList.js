@@ -1,10 +1,11 @@
+/* eslint-disable */
 import React, { useContext, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import classes from './PokemonsList.module.scss';
 import { PokemonCard } from '../PokemonCard/PokemonCard';
 import { PokemonsStoreContext } from '../../store/pokemonsStore';
 import { ModalContentStoreContext } from '../../store/modalContentStore';
-import Loader from "../Loader/Loader";
+import Loader from '../Loader/Loader';
 
 export const PokemonsList = observer(() => {
   const pokemonStore = useContext(PokemonsStoreContext);
@@ -14,9 +15,8 @@ export const PokemonsList = observer(() => {
     pokemonStore.loadPokemonsFromServer('https://pokeapi.co/api/v2/pokemon/?limit=10&offset=10');
   }, []);
 
-
-  if(pokemonStore.loading){
-    return <Loader />
+  if (pokemonStore.loading) {
+    return <Loader />;
   }
 
   return (
@@ -25,7 +25,8 @@ export const PokemonsList = observer(() => {
         {pokemonStore.filteredPokemons.map((pokemon) => {
           const newModalContent = (
             <div className={classes['pokemon-photos']}>
-              {Object.values(pokemon.sprites).map((link,i) => <img key={i} src={link} />)}
+              {Object.values(pokemon.sprites)
+                .map((link, i) => <img alt={pokemon.name} key={i} src={link} />)}
             </div>
           );
 

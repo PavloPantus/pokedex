@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { observer } from 'mobx-react-lite';
 import classes from './App.module.scss';
@@ -7,7 +7,7 @@ import TransitionsModal from './components/ModalWindow/ModalWindow';
 import PaginationControlled from './components/Pagination/Pagination';
 import FilterByTags from './components/FilterByTags/FilterByTags';
 import { ModalContentStoreContext } from './store/modalContentStore';
-import {PokemonsStoreContext} from "./store/pokemonsStore";
+import { PokemonsStoreContext } from './store/pokemonsStore';
 
 const App = observer(() => {
   const modalContentStore = useContext(ModalContentStoreContext);
@@ -19,16 +19,15 @@ const App = observer(() => {
       <div className={classes.app}>
         <h1 className={classes.app__heading}>Pokedex app</h1>
 
-
         <nav className={classes['app__mobile-navigation']} role="navigation">
-          <div id={classes["menuToggle"]}>
+          <div id={classes.menuToggle}>
             <input type="checkbox" />
-            <span className={classes['toggle-span']}></span>
-            <span className={classes['toggle-span']}></span>
-            <span className={classes['toggle-span']}></span>
+            <span className={classes['toggle-span']} />
+            <span className={classes['toggle-span']} />
+            <span className={classes['toggle-span']} />
 
-            <ul id={classes["menu"]}>
-              <div className={classes['app__filters_mobile']}>
+            <ul id={classes.menu}>
+              <div className={classes.app__filters_mobile}>
                 <div className={classes['appp__filter-name']}>
                   <TextField
                     id="outlined-multiline-flexible"
@@ -37,7 +36,7 @@ const App = observer(() => {
                     rowsMax={4}
                     value={pokemonStore.filterQueryName}
                     onChange={(e) => {
-                      pokemonStore.setFilterQueryName(e.target.value)
+                      pokemonStore.setFilterQueryName(e.target.value);
                     }}
                     variant="outlined"
                   />
@@ -50,7 +49,6 @@ const App = observer(() => {
           </div>
         </nav>
 
-
         <div className={classes.app__filters}>
           <div className={classes['appp__filter-name']}>
             <TextField
@@ -60,7 +58,7 @@ const App = observer(() => {
               rowsMax={4}
               value={pokemonStore.filterQueryName}
               onChange={(e) => {
-                pokemonStore.setFilterQueryName(e.target.value)
+                pokemonStore.setFilterQueryName(e.target.value);
               }}
               variant="outlined"
             />
@@ -76,12 +74,14 @@ const App = observer(() => {
 
         {
           modalContentStore.content && (
-            <TransitionsModal children={modalContentStore.content} />
+            <TransitionsModal>
+              {modalContentStore.content}
+            </TransitionsModal>
           )
 
         }
 
-        <div className={classes['app__pagination']}>
+        <div className={classes.app__pagination}>
           <PaginationControlled />
         </div>
 

@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from 'react';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { observer } from 'mobx-react-lite';
 import { TagsStoreContext } from '../../store/tagsStore';
 import classes from './FilterByTags.module.scss';
-import {PokemonsStoreContext} from "../../store/pokemonsStore";
+import { PokemonsStoreContext } from '../../store/pokemonsStore';
 
 const FilterBytags = observer(() => {
   const TagsStore = useContext(TagsStoreContext);
@@ -34,9 +33,18 @@ const FilterBytags = observer(() => {
         {
           tags.map(tag => (
             <FormControlLabel
-              style={{zIndex: 4, marginTop: '5px'}}
+              style={{
+                zIndex: 4, marginTop: '5px',
+              }}
               key={tag.name}
-              control={<Checkbox style={{ color: tag.color }} checked={tagsState[tag.name] || false} onChange={handleChange} name={tag.name} />}
+              control={(
+                <Checkbox
+                  style={{ color: tag.color }}
+                  checked={tagsState[tag.name] || false}
+                  onChange={handleChange}
+                  name={tag.name}
+                />
+              )}
               label={tag.name}
             />
           ))
