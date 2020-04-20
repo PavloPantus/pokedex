@@ -2,16 +2,20 @@
 import React, { useContext } from 'react';
 import classes from './PokemonCard.module.scss';
 import { TagsStoreContext } from '../../store/tagsStore';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export const PokemonCard = ({ id, name, types, stats }) => {
   const TagsStore = useContext(TagsStoreContext);
 
   return (
     <div className={classes.pokemon}>
-      <img
+      <LazyLoadImage
+        placeholderSrc={'http://placehold.it/250x250/ffffff&text=not_loaded'}
+        effect="blur"
         className={classes.pokemon__avatar}
         src={`https://pokeres.bastionbot.org/images/pokemon/${id}.png`}
-        alt="pokemonName"
+        alt={name}
       />
 
       <table className={classes['pokemon__description-section']}>

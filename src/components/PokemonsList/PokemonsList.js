@@ -32,10 +32,15 @@ export const PokemonsList = observer(() => {
     (
       <ul className={classes.pokemons}>
         {pokemonStore.filteredPokemons.map((pokemon) => {
+
           const newModalContent = (
             <div className={classes['pokemon-photos']}>
               {Object.values(pokemon.sprites)
-                .map((link, i) => <img alt={pokemon.name} key={i} src={link} />)}
+                .map((link, i) => <img
+                  alt={pokemon.name}
+                  key={i}
+                  src={link}
+                />)}
             </div>
           );
 
