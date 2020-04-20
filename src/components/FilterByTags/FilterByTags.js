@@ -27,7 +27,7 @@ const FilterBytags = observer(() => {
   };
 
   return (
-    <div className={classes['fitler-container']}>
+    <div className={classes['filter']}>
       <span className={classes['filter__heading']}>
         filter by tag
       </span>

@@ -1,0 +1,11 @@
+.filter {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  &__heading {
+    font-size: 23px;
+  }
+}

@@ -21,6 +21,7 @@ export default function PaginationControlled() {
 
   return (
     <div className={classes.root}>
+      how mucg show per page ????????????????????????
       <Typography>Page: {page}</Typography>
       <Pagination count={10} page={page} onChange={handleChange} />
     </div>

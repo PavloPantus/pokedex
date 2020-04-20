@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import {observer} from 'mobx-react-lite';
+import {ModalContentStoreContext} from "../../store/modalContentStore";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -18,16 +20,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({children}) {
+const TransitionsModal = observer(({children}) => {
+
+  const modalContentStore = useContext(ModalContentStoreContext);
+
+
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+
 
   const handleOpen = () => {
-    setOpen(true);
+    //modalContentStore.setContent(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    modalContentStore.setContent(null);
   };
 
   return (
@@ -36,9 +42,8 @@ export default function TransitionsModal({children}) {
         react-transition-group
       </button>
       <Modal
-        children={children}
         className={classes.modal}
-        open={open}
+        open={!!modalContentStore.content}
         onClose={handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -46,11 +51,14 @@ export default function TransitionsModal({children}) {
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={!!modalContentStore.content}>
           <div className={classes.paper}>
+            {children}
           </div>
         </Fade>
       </Modal>
     </div>
   );
-}
+})
+
+export default TransitionsModal

@@ -6,9 +6,11 @@ import PaginationControlled from "./components/Pagination/Pagination";
 import TextField from "@material-ui/core/TextField";
 import FilterByTags from "./components/FilterByTags/FilterByTags";
 import {observer} from 'mobx-react-lite';
+import {ModalContentStoreContext} from "./store/modalContentStore";
 
 const App = observer(() => {
 
+  const modalContentStore = useContext(ModalContentStoreContext);
 
 
   return (
@@ -25,7 +27,7 @@ const App = observer(() => {
               multiline
               rowsMax={4}
               value={undefined}
-              onChange={(e)=>{console.log(e)}}
+              onChange={(e)=>{console.log(e.target.value)}}
               variant="outlined"
             />
           </div>
@@ -38,7 +40,13 @@ const App = observer(() => {
           <PokemonsList />
         </div>
 
-        <TransitionsModal />
+        {
+          modalContentStore.content && (
+            <TransitionsModal children={modalContentStore.content} />
+          )
+
+        }
+
         <PaginationControlled />
 
 
